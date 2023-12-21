@@ -22,9 +22,9 @@ function M.setup(opts)
 		end
 		if string.starts(trimmed, comment) then
 			if vim.bo.filetype == "lua" then
-				line = string.gsub(line, "^(%-%-)", "")
+				line = string.gsub(line, "(%-%-)", "")
 			else
-				line = string.gsub(line, "^(" .. comment .. ")", "")
+				line = string.gsub(line, "(" .. comment .. ")", "")
 			end
 			vim.api.nvim_set_current_line(line)
 		else
