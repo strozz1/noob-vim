@@ -3,7 +3,7 @@ local string = require("string")
 
 local map = {
 	c = "//",
-	lua = "%-%-",
+	lua = "--",
 	java = "//",
 }
 
