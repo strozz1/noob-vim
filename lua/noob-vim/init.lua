@@ -3,7 +3,7 @@ local string = require("string")
 
 local map = {
 	c = "//",
-	lua = "--",
+	lua = "%-%-",
 	java = "//",
 }
 
@@ -17,7 +17,7 @@ function M.setup(opts)
 		local trimmed = line:match("^%s*(.-)%s*$")
 		local comment = map[vim.bo.filetype]
 		if string.starts(trimmed, comment) then
-			line = string.gsub(line, "^(%-%-)", "")
+			line = string.gsub(line, "^(" .. comment .. ")", "")
 			vim.api.nvim_set_current_line(line)
 		else
 			line = comment .. line
