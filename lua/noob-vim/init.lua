@@ -21,7 +21,7 @@ function M.setup(opts)
 			return
 		end
 		if string.starts(trimmed, comment) then
-			if comment == "lua" then
+			if vim.bo.filetype == "lua" then
 				line = string.gsub(line, "^(%-%-)", "")
 			else
 				line = string.gsub(line, "^(" .. comment .. ")", "")
