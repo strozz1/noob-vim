@@ -27,11 +27,10 @@ function M.setup(opts)
 			end
 			vim.api.nvim_set_current_line(line)
 		else
-			--			line = comment .. line
-			local modLine = line:gsub("^(%s*)", function(leadingSpaces, rest)
-				return leadingSpaces .. comment .. rest
-			end)
-			vim.api.nvim_set_current_line(modLine)
+			line = comment .. line
+			line = string.gsub(line, "^%s*", "^%s*" .. comment)
+
+			vim.api.nvim_set_current_line(line)
 		end
 	end, { noremap = true, silent = true, desc = "Comment line" })
 end
