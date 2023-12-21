@@ -17,13 +17,11 @@ function M.setup(opts)
 		local trimmed = line:match("^%s*(.-)%s*$")
 		local comment = map[vim.bo.filetype]
 		if string.starts(trimmed, comment) then
-			line = string.gsub(line, "%-%-", "")
+			line = string.gsub(line, "^(%-%-)", "")
 			vim.api.nvim_set_current_line(line)
-			print("1 " .. line)
 		else
 			line = comment .. line
 			vim.api.nvim_set_current_line(line)
-			print("2 " .. line)
 		end
 	end, { noremap = true, silent = true, desc = "Comment line" })
 end
