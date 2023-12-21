@@ -28,8 +28,6 @@ function M.setup(opts)
 			vim.api.nvim_set_current_line(line)
 		else
 			line = comment .. line
-			line = string.gsub(line, "^%s*", "^%s*" .. comment)
-
 			vim.api.nvim_set_current_line(line)
 		end
 	end, { noremap = true, silent = true, desc = "Comment line" })
