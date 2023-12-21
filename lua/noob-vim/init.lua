@@ -16,8 +16,16 @@ function M.setup(opts)
 		local line = vim.api.nvim_get_current_line()
 		local trimmed = line:match("^%s*(.-)%s*$")
 		local comment = map[vim.bo.filetype]
+
+		if comment == nil then
+			return
+		end
 		if string.starts(trimmed, comment) then
-			line = string.gsub(line, "^(" .. comment .. ")", "")
+			if comment == "lua" then
+				line = string.gsub(line, "^(%-%-)", "")
+			else
+				line = string.gsub(line, "^(" .. comment .. ")", "")
+			end
 			vim.api.nvim_set_current_line(line)
 		else
 			line = comment .. line
