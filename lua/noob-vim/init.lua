@@ -16,7 +16,6 @@ function M.setup(opts)
 		local line = vim.api.nvim_get_current_line()
 		local trimmed = line:match("^%s*(.-)%s*$")
 		local comment = map[vim.bo.filetype]
-
 		if comment == nil then
 			return
 		end
@@ -28,8 +27,11 @@ function M.setup(opts)
 			end
 			vim.api.nvim_set_current_line(line)
 		else
-			line = comment .. line
-			vim.api.nvim_set_current_line(line)
+			--			line = comment .. line
+			local modLine = line:gsub("^(%s*)", function(leadingSpaces, rest)
+				return leadingSpaces .. comment .. rest
+			end)
+			vim.api.nvim_set_current_line(modLine)
 		end
 	end, { noremap = true, silent = true, desc = "Comment line" })
 end
